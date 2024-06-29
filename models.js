@@ -108,8 +108,9 @@ async function generateAndUploadPDFs() {
 
       // promise to handle stream events
       const uploadPromise = new Promise((resolve, reject) => {
-              
+      // console.log(pdfStream);        
         pdfStream.on('finish', async () => {
+          
           try {
             const result = await uploadToS3(pdfStream, user.roll_number);
             const s3Location = result.Location;
