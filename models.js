@@ -104,11 +104,11 @@ async function generateAndUploadPDFs() {
 
     for (const user of users) {
       const pdfStream = generatePDF(user);
-      console.log(typeof(pdfStream));
+      // console.log(typeof(pdfStream));
 
       // promise to handle stream events
       const uploadPromise = new Promise((resolve, reject) => {
-
+        
         pdfStream.on('finish', async () => {
           try {
             const result = await uploadToS3(pdfStream, user.roll_number);
