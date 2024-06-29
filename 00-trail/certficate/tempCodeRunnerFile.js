@@ -1,0 +1,1 @@
+fs.promises.readFile("images/bb_stamp.svg", "utf-8")
