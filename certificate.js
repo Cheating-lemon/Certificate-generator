@@ -6,7 +6,6 @@ const SVGtoPDF = require("svg-to-pdfkit");
 const Stream = require("stream");
 
 const generatePDF = async (user) => {
-
   const doc = new PDFDocument({ size: "A4", layout: "landscape" }); // size: [500, 500],
   const stream = new Stream.PassThrough();
   doc.pipe(stream);
@@ -31,32 +30,11 @@ const generatePDF = async (user) => {
     doc.image("images/iidt.png", endX - 70, 50, { width: 70, height: 50 });
     // 2nd
     doc.image("images/qr.png", 70, 160, { width: 70, height: 70 });
-    doc.image("images/gold_badge.png", endX - 70, 160, {
-      width: 70,
-      height: 90,
-    });
+    doc.image("images/gold_badge.png", endX - 70, 160, {width: 70,height: 90,});
     //3rd
-    SVGtoPDF(
-      doc,
-      await fs.promises.readFile("images/bb_stamp.svg", "utf-8"),
-      160,
-      400,
-      { width: 1, height: 1 }
-    );
-    SVGtoPDF(
-      doc,
-      await fs.promises.readFile("images/director_sign.svg", "utf-8"),
-      450,
-      420,
-      {}
-    );
-    SVGtoPDF(
-      doc,
-      await fs.promises.readFile("images/iidt_stamp.svg", "utf-8"),
-      580,
-      400,
-      {}
-    );
+    SVGtoPDF(doc,await fs.promises.readFile("images/bb_stamp.svg", "utf-8"),160,400,{ width: 1, height: 1 });
+    SVGtoPDF(doc,await fs.promises.readFile("images/director_sign.svg", "utf-8"),450,420,{});
+    SVGtoPDF(doc,await fs.promises.readFile("images/iidt_stamp.svg", "utf-8"),580,400,{});
 
     const textBox = [
       { text: "This is to certify that ", font: "Helvetica" },
@@ -97,30 +75,22 @@ const generatePDF = async (user) => {
       .moveDown(4)
       .fontSize(14)
       .font("Helvetica-Bold")
-      .text("ANDHRA PRADESH STATE COUNCIL OF HIGHER EDUCATION", {
-        align: "center",
-      })
+      .text("ANDHRA PRADESH STATE COUNCIL OF HIGHER EDUCATION", {align: "center",})
       .font("Helvetica")
       .fontSize(13)
       .moveDown(0.3)
-      .text("(A Statutory Body of the Government of Andhra Pradesh)", {
-        align: "center",
-      })
+      .text("(A Statutory Body of the Government of Andhra Pradesh)", {align: "center",})
       .moveDown(1)
       .fontSize(13)
       .text("and", { align: "center" })
       .moveDown(1)
       .fontSize(13)
       .font("Helvetica-Bold")
-      .text("INTERNATIONAL INSTITUTE OF DIGITAL TECHNOLOGIES, TIRUPATI", {
-        align: "center",
-      })
+      .text("INTERNATIONAL INSTITUTE OF DIGITAL TECHNOLOGIES, TIRUPATI", {align: "center",})
       .font("Helvetica")
       .fontSize(14)
       .moveDown(0.3)
-      .text("( IT E & C Department, Government of Andhra Pradesh)", {
-        align: "center",
-      })
+      .text("( IT E & C Department, Government of Andhra Pradesh)", {align: "center",})
       .moveDown(1)
       .fontSize(12)
       .font("Helvetica")
