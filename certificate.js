@@ -8,6 +8,7 @@ const Stream = require("stream");
 const generatePDF = async (user) => {
   const doc = new PDFDocument({ size: "A4", layout: "landscape" }); // size: [500, 500],
   const stream = new Stream.PassThrough();
+  
   doc.pipe(stream);
 
   async function writePDF() {
